@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>風俗業界特化型AI宣材写真</title>
   <style>
-    :root {
+    :root  {
       --primary: #ff3e6c;
       --secondary: #8f2d56;
       --accent: #2d00f7;
@@ -34,25 +34,18 @@
       background-color: #f2f2f2;
     }
     
-    h1, h2, h3 {
+    h1, h2, h3{
       font-weight: 700;
       line-height: 1.2;
-    }
-
-    h1 {
-      font-size: var(--heading-large);
-    }
-
-    h2 {
-      font-size: var(--heading-medium);
-    }
-
-    h3 {
-      font-size: var(--heading-small);
+      /* 必要に応じて改行抑制 */
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     p, li {
       font-size: var(--text-normal);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .small-text {
@@ -77,7 +70,9 @@
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
-      white-space: nowrap;
+      white-space: normal;
+      text-align: center;
+      margin: 5px 0;
     }
     
     .btn:hover {
@@ -105,12 +100,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
     
     .logo {
       font-size: 24px;
       font-weight: 700;
-      white-space: nowrap;
     }
     
     .logo span {
@@ -122,13 +117,14 @@
       text-decoration: none;
       margin-left: 20px;
       font-weight: 500;
-      white-space: nowrap;
     }
     
     /* Hero Section */
     .hero {
       padding: 80px 0;
+      background: url('/api/placeholder/1200/600') center/cover;
       background-color: rgba(0,0,0,0.7);
+      background-blend-mode: overlay;
       color: white;
       text-align: center;
     }
@@ -136,9 +132,6 @@
     .hero h1 {
       margin-bottom: 20px;
       font-size: var(--heading-large);
-      max-width: 100%;
-      overflow-wrap: break-word;
-      word-wrap: break-word;
     }
     
     .hero p {
@@ -149,24 +142,25 @@
     
     /* Features */
     .features {
-      padding: 60px 0;
+      padding: 80px 0;
       background: var(--light);
     }
     
     .section-title {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
     }
     
     .section-title h2 {
+      font-size: var(--heading-medium);
       color: var(--primary);
       margin-bottom: 15px;
     }
     
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
     }
     
     .feature-card {
@@ -188,6 +182,17 @@
       overflow: hidden;
     }
     
+    .feature-img img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+    
+    .feature-card:hover .feature-img img {
+      transform: scale(1.05);
+    }
+    
     .feature-content {
       padding: 20px;
     }
@@ -200,7 +205,7 @@
     
     /* Benefits */
     .benefits {
-      padding: 60px 0;
+      padding: 80px 0;
       background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
       color: white;
     }
@@ -209,26 +214,31 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
-      margin-top: 30px;
+      margin-top: 50px;
     }
     
     .benefit-card {
       background: rgba(255,255,255,0.1);
       border-radius: 10px;
-      padding: 25px;
+      padding: 30px;
       text-align: center;
-      height: 100%;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    
+    .benefit-card:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-5px);
     }
     
     .benefit-icon {
-      font-size: 36px;
-      margin-bottom: 15px;
+      font-size: 40px;
+      margin-bottom: 20px;
       color: var(--primary);
     }
     
     /* Target Sections */
     .target-section {
-      padding: 60px 0;
+      padding: 80px 0;
     }
     
     .target-section:nth-child(even) {
@@ -239,24 +249,24 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 40px;
+      gap: 50px;
     }
     
     .target-content {
       flex: 1;
-      min-width: 280px;
+      min-width: 300px;
     }
     
-    .target-content h2 {
+    .target-content h2  {
       color: var(--primary);
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       font-size: var(--heading-medium);
     }
     
     .target-image {
       flex: 1;
-      min-width: 280px;
-      height: 350px;
+      min-width: 300px;
+      height: 400px;
       background: #f0f0f0;
       border-radius: 10px;
       overflow: hidden;
@@ -271,7 +281,7 @@
     
     .check-list {
       list-style: none;
-      margin: 20px 0;
+      margin: 30px 0;
     }
     
     .check-list li {
@@ -288,85 +298,109 @@
       font-weight: bold;
     }
     
-    /* How it works */
-    .how-it-works {
-      padding: 60px 0;
+    /* Pricing Section */
+    .pricing {
+      padding: 80px 0;
       background: var(--light);
     }
     
-    .steps {
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-    
-    .step {
-      text-align: center;
-      padding: 20px;
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
       background: white;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      height: 100%;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     
-    .step-number {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
+    .pricing-table th, .pricing-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .pricing-table th {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .pricing-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .pricing-table tr:hover {
+      background: #f8f8f8;
+    }
+    
+    /* Transaction Flow */
+    .transaction-flow {
+      padding: 80px 0;
+      background: var(--light);
+    }
+    
+    .flow-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+    
+    .flow-step {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+    
+    .flow-step:not(:last-child):after {
+      content: "→";
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      color: var(--primary);
+    }
+    
+    .flow-icon {
+      width: 80px;
+      height: 80px;
       background: var(--primary);
       color: white;
       border-radius: 50%;
-      line-height: 50px;
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-    
-    /* Testimonials */
-    .testimonials {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 60px 0;
-    }
-    
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    
-    .testimonial-card {
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 25px;
-      height: 100%;
-    }
-    
-    .testimonial-text {
-      font-style: italic;
-      margin-bottom: 20px;
-    }
-    
-    .customer-info {
       display: flex;
       align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 30px;
     }
     
-    .customer-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 15px;
-      background: rgba(255,255,255,0.3);
+    /* Policies (返品ポリシー) */
+    .policies {
+      padding: 80px 0;
+    }
+    
+    .policy-container {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .policy-container h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
     }
     
     /* Footer */
     footer {
       background: var(--dark);
       color: white;
-      padding: 40px 0;
+      padding: 50px 0;
     }
     
     .footer-content {
@@ -377,7 +411,7 @@
     
     .footer-column h3 {
       font-size: 18px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       color: var(--primary);
     }
     
@@ -395,6 +429,10 @@
       transition: color 0.3s;
     }
     
+    .footer-column a:hover {
+      color: white;
+    }
+    
     .copyright {
       text-align: center;
       padding-top: 30px;
@@ -404,46 +442,47 @@
       font-size: 14px;
     }
     
-    /* Responsive */
+    /* スマホ向け自動リサイズ・改行抑制 */
     @media (max-width: 768px) {
-      .target-container {
-        flex-direction: column;
+      h1, h2, h3, p, li {
+        word-break: keep-all;
       }
-      
-      .target-content, .target-image {
-        width: 100%;
+      .pricing-table th, .pricing-table td {
+        white-space: nowrap;
       }
-      
       .nav {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
       }
-      
       .nav-links {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
+        gap: 10px;
       }
-      
       .nav-links a {
         margin-left: 0;
-        font-size: 14px;
       }
-      
-      .hero {
-        padding: 60px 0;
+      .flow-step:not(:last-child):after {
+        content: "↓";
+        position: static;
+        display: block;
+        transform: none;
+        margin: 10px 0;
       }
-      
-      .hero h1 br {
-        display: none;
+      .flow-steps {
+        flex-direction: column;
+        align-items: center;
       }
-      
-      .btn {
-        padding: 10px 20px;
+      .flow-step {
+        margin-bottom: 20px;
+      }
+      .pricing-table th, .pricing-table td {
+        padding: 10px;
         font-size: 14px;
       }
     }
+    
   </style>
 </head>
 <body>
@@ -456,6 +495,7 @@
           <a href="#features">特徴</a>
           <a href="#for-new">新人キャスト向け</a>
           <a href="#pricing">価格</a>
+          <a href="#flow">お取引の流れ</a>
           <a href="#contact">お問い合わせ</a>
         </div>
       </nav>
@@ -465,13 +505,13 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <h1>業界特化型AI宣材写真サービス コスト削減と集客力アップを実現</h1>
+      <h1>業界特化型AI宣材写真サービス<br>コスト削減と集客力アップを実現</h1>
       <p>たった1枚の写真から、集客力抜群の宣材写真と動画を低コストで無限に生成。新人からベテランまで、すべてのキャストの魅力を最大限に引き出します。</p>
       <a href="#pricing" class="btn btn-accent">今すぐ無料トライアル</a>
     </div>
   </section>
   
-  <!-- Features -->
+  <!-- Features Section -->
   <section class="features" id="features">
     <div class="container">
       <div class="section-title">
@@ -481,6 +521,9 @@
       
       <div class="feature-grid">
         <div class="feature-card">
+          <div class="feature-img">
+            <img src="/api/placeholder/400/200" alt="低コスト宣材写真" width="100%" height="100%">
+          </div>
           <div class="feature-content">
             <h3>圧倒的な低コスト</h3>
             <p>スタジオも衣装も不要。1枚の写真から多種類を生成可能。写真の追加や季節衣装への変更もいつでも可能です。</p>
@@ -488,6 +531,9 @@
         </div>
         
         <div class="feature-card">
+          <div class="feature-img">
+            <img src="/api/placeholder/400/200" alt="豊富な衣装バリエーション" width="100%" height="100%">
+          </div>
           <div class="feature-content">
             <h3>豊富な衣装バリエーション</h3>
             <p>制服、ナース、OL、学生、チャイナドレス、メイド、バニーガール、水着などあらゆる衣装から選択可能。</p>
@@ -495,6 +541,9 @@
         </div>
         
         <div class="feature-card">
+          <div class="feature-img">
+            <img src="/api/placeholder/400/200" alt="動画コンテンツ生成" width="100%" height="100%">
+          </div>
           <div class="feature-content">
             <h3>静止画から魅力的な動画へ</h3>
             <p>AIによって静止画を自然な動きのある短い動画に変換。SNSでの拡散力を高め、お客様の注目を集めます。表情や仕草までリアルに再現します。</p>
@@ -504,7 +553,7 @@
     </div>
   </section>
   
-  <!-- Benefits -->
+  <!-- Benefits Section -->
   <section class="benefits">
     <div class="container">
       <div class="section-title">
@@ -534,7 +583,7 @@
     </div>
   </section>
   
-  <!-- For New Cast -->
+  <!-- 新人キャスト向け -->
   <section class="target-section" id="for-new">
     <div class="container">
       <div class="target-container">
@@ -547,49 +596,128 @@
             <li><strong>スムーズな撮影：</strong>たった1枚の自撮り写真からプロ品質の宣材写真を生成。初めての撮影に対する不安や緊張を解消します。</li>
             <li><strong>多様な衣装試着：</strong>実際に着る必要なく、様々な衣装での宣材写真が完成。キャストの負担を大幅に軽減します。</li>
             <li><strong>即日デビュー：</strong>最短30分で宣材写真が完成。急なデビューにも対応可能です。</li>
+            <li><strong>コスパ最大化：</strong>短期在籍でも投資対効果を最大化できる料金体系。</li>
           </ul>
           
           <a href="#pricing" class="btn">新人キャスト向けプランを見る</a>
         </div>
+        
+        <div class="target-image">
+          <img src="/api/placeholder/500/400" alt="新人キャスト向けソリューション">
+        </div>
       </div>
     </div>
   </section>
   
-  <!-- How it works -->
-  <section class="how-it-works" id="how-it-works">
+  <!-- ベテランキャスト向け -->
+  <section class="target-section" id="for-pro">
+    <div class="container">
+      <div class="target-container">
+        <div class="target-image">
+          <img src="/api/placeholder/500/400" alt="ベテランキャスト向けソリューション">
+        </div>
+        
+        <div class="target-content">
+          <h2>ベテランキャスト向け</h2>
+          <p>常連客を飽きさせない、バリエーション豊かなコンテンツ制作</p>
+          
+          <ul class="check-list">
+            <li><strong>定期的なリニューアル：</strong>月替わりの衣装やテーマで常に新鮮なイメージを提供。常連のお客様にも新たな魅力をアピールできます。</li>
+            <li><strong>季節イベント対応：</strong>クリスマス、ハロウィン、浴衣、サンタなど、季節に合わせた特別な衣装での宣材写真を簡単に作成。</li>
+            <li><strong>動画コンテンツ：</strong>静止画を自然な動きのある短い動画に変換。SNSでの拡散力を高め、新規客の獲得につなげます。</li>
+            <li><strong>AI表情調整：</strong>様々な表情（微笑み、セクシー、クール等）のバリエーションを生成し、多面的な魅力をアピール。</li>
+            <li><strong>無制限の写真生成：</strong>プレミアムプランでは写真生成が無制限。常に新しいコンテンツで集客力を維持できます。</li>
+          </ul>
+          
+          <a href="#pricing" class="btn">ベテランキャスト向けプランを見る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 価格セクション：新規価格表 -->
+  <section class="pricing" id="pricing">
     <div class="container">
       <div class="section-title">
-        <h2>ご利用の流れ</h2>
-        <p>3つの簡単ステップで完了</p>
+        <h2>価格</h2>
+        <p>シンプルな価格体系でご利用いただけます</p>
       </div>
-      
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>写真をアップロード</h3>
-          <p>キャストの顔がはっきり写った写真を1枚アップロード。スマホで撮影した自撮り写真でも問題ありません。</p>
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>サービス内容</th>
+            <th>料金</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>画像生成（1枚）</td>
+            <td>¥2,200</td>
+          </tr>
+          <tr>
+            <td>動画生成（1枚）</td>
+            <td>¥3,300</td>
+          </tr>
+          <tr>
+            <td>オプション：ポーズ・衣装指定（1つ）</td>
+            <td>¥1,100</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  <!-- お取引の流れ -->
+  <section class="transaction-flow" id="flow">
+    <div class="container">
+      <div class="section-title">
+        <h2>お取引の流れ</h2>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-icon">①</div>
+          <p>ご依頼</p>
         </div>
-        
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>衣装とスタイルを選択</h3>
-          <p>500種類以上の衣装、ポーズ、背景、照明から好みのスタイルを選択。または当社AIにおすすめを提案させることも可能です。</p>
+        <div class="flow-step">
+          <div class="flow-icon">②</div>
+          <p>見積＋サンプル納品<br><small>※サンプルにはぼかし等を含む</small></p>
         </div>
-        
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>完成写真を受け取る</h3>
-          <p>最短30分で高品質な宣材写真が完成。気に入った写真を選んでダウンロードし、すぐに使用できます。</p>
+        <div class="flow-step">
+          <div class="flow-icon">③</div>
+          <p>入金</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-icon">④</div>
+          <p>納品</p>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- Footer -->
+  <!-- 返品ポリシー -->
+  <section class="policies" id="policies">
+    <div class="container">
+      <div class="policy-container">
+        <h3>返品ポリシー</h3>
+        <p>デジタルデータのため、納品後の返金は致しかねます。</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer（利用規約リンクを含む） -->
   <footer>
     <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>GLAMSHOT AI</h3>
+          <ul>
+            <li><a href="#contact">お問い合わせ</a></li>
+            <li><a href="terms.html">利用規約</a></li>
+          </ul>
+        </div>
+      </div>
       <div class="copyright">
-        © 2025 GLAMSHOT AI. All rights reserved.
+        &copy; 2025 GLAMSHOT AI. All rights reserved.
       </div>
     </div>
   </footer>
