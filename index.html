@@ -266,19 +266,31 @@
     .target-image {
       flex: 1;
       min-width: 300px;
-      height: 400px;
+      /* 固定高さを削除またはレスポンシブに設定 */
+      /* height: 400px; */
       background: #f0f0f0;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      /* アスペクト比を保ったレスポンシブなボックスにする場合 */
+      position: relative;
     }
-    
+
+    .target-image::before {
+      content: "";
+      display: block;
+      padding-top: 75%; /* 必要に応じて比率調整（例: 4:3なら75%、16:9なら56.25%） */
+    }
+
     .target-image img {
-      width: auto;
-      height: auto;
-      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* 全体を表示 */
+      display: block;
     }
-    
     .check-list {
       list-style: none;
       margin: 30px 0;
