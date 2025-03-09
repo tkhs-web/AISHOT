@@ -5,14 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>風俗業界特化型AI宣材写真</title>
   <style>
-    :root {
-      --primary: #ff3e6c;
-      --secondary: #8f2d56;
-      --accent: #2d00f7;
-      --dark: #292929;
-      --light: #f8f9fa;
-      --gray: #6c757d;
-    }
+    :root  {
+  --primary: #ff3e6c;
+  --secondary: #8f2d56;
+  --accent: #2d00f7;
+  --dark: #292929;
+  --light: #f8f9fa;
+  --gray: #6c757d;
+  
+  /* 文字サイズ変数を追加 */
+  --heading-large: clamp(28px, 5vw, 48px);
+  --heading-medium: clamp(24px, 4vw, 36px);
+  --heading-small: clamp(20px, 3vw, 28px);
+  --text-normal: clamp(14px, 2vw, 18px);
+  --text-small: clamp(12px, 1.5vw, 16px);
+}
     
     * {
       margin: 0;
@@ -27,10 +34,32 @@
       background-color: #f2f2f2;
     }
     
-    h1, h2, h3 {
-      font-weight: 700;
-      line-height: 1.2;
-    }
+    h1, h2, h3{
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* 各見出しサイズを指定 */
+h1 {
+  font-size: var(--heading-large);
+}
+
+h2 {
+  font-size: var(--heading-medium);
+}
+
+h3 {
+  font-size: var(--heading-small);
+}
+
+p, li {
+  font-size: var(--text-normal);
+}
+
+/* 小さいテキスト用 */
+.small-text {
+  font-size: var(--text-small);
+}
     
     .container {
       width: 100%;
@@ -106,15 +135,20 @@
     }
     
     .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
+  margin-bottom: 20px;
+  /* 固定サイズの削除
+  font-size: 48px; */
+  font-size: var(--heading-large);
+}
+
     
     .hero p {
-      font-size: 20px;
-      max-width: 800px;
-      margin: 0 auto 40px;
-    }
+  /* 固定サイズの削除
+  font-size: 20px; */
+  font-size: clamp(16px, 2.5vw, 20px);
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
     
     /* Features */
     .features {
@@ -174,10 +208,12 @@
     }
     
     .feature-content h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-      color: var(--secondary);
-    }
+  /* 固定サイズの削除
+  font-size: 22px; */
+  font-size: var(--heading-small);
+  margin-bottom: 10px;
+  color: var(--secondary);
+}
     
     /* Benefits */
     .benefits {
@@ -233,11 +269,13 @@
       min-width: 300px;
     }
     
-    .target-content h2 {
-      color: var(--primary);
-      margin-bottom: 20px;
-      font-size: 32px;
-    }
+    .target-content h2  {
+  color: var(--primary);
+  margin-bottom: 20px;
+  /* 固定サイズの削除
+  font-size: 32px; */
+  font-size: var(--heading-medium);
+}
     
     .target-image {
       flex: 1;
@@ -546,28 +584,46 @@
       font-size: 14px;
     }
     
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 32px;
-      }
-      
-      .hero p {
-        font-size: 18px;
-      }
-      
-      .section-title h2 {
-        font-size: 28px;
-      }
-      
-      .target-container {
-        flex-direction: column;
-      }
-      
-      .target-content, .target-image {
-        width: 100%;
-      }
-    }
+/* Responsive */
+@media (max-width: 768px) {
+  /* 以下の固定サイズ指定は不要になります
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+  }
+  
+  .section-title h2 {
+    font-size: 28px;
+  } */
+  
+  .target-container {
+    flex-direction: column;
+  }
+  
+  .target-content, .target-image {
+    width: 100%;
+  }
+  
+  /* ナビゲーションの調整を追加 */
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .nav-links a {
+    margin-left: 0;
+  }
+}
     
     /* Animation for FAQ */
     .js-accordion-item .faq-answer {
