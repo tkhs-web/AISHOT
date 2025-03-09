@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLAMSHOT AI - 風俗業界特化型AI宣材写真サービス</title>
+  <style>
+    :root {
+      --primary: #ff3e6c;
+      --secondary: #8f2d56;
+      --accent: #2d00f7;
+      --dark: #292929;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    body {
+      color: var(--dark);
+      line-height: 1.6;
+      background-color: #f2f2f2;
+    }
+    
+    h1, h2, h3 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--primary);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .btn-accent {
+      background: var(--accent);
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    
+    .logo span {
+      color: #fff;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 100px 0;
+      background: url('/api/placeholder/1200/600') center/cover;
+      background-color: rgba(0,0,0,0.7);
+      background-blend-mode: overlay;
+      color: white;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+    
+    /* Features */
+    .features {
+      padding: 80px 0;
+      background: var(--light);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-title h2 {
+      font-size: 36px;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .feature-img {
+      height: 200px;
+      background: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-img img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+    
+    .feature-card:hover .feature-img img {
+      transform: scale(1.05);
+    }
+    
+    .feature-content {
+      padding: 20px;
+    }
+    
+    .feature-content h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--secondary);
+    }
+    
+    /* Benefits */
+    .benefits {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      color: white;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .benefit-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    
+    .benefit-card:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-5px);
+    }
+    
+    .benefit-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    /* Target Sections */
+    .target-section {
+      padding: 80px 0;
+    }
+    
+    .target-section:nth-child(even) {
+      background: var(--light);
+    }
+    
+    .target-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+    
+    .target-content {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .target-content h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+    
+    .target-image {
+      flex: 1;
+      min-width: 300px;
+      height: 400px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .target-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .check-list {
+      list-style: none;
+      margin: 30px 0;
+    }
+    
+    .check-list li {
+      padding-left: 30px;
+      position: relative;
+      margin-bottom: 15px;
+    }
+    
+    .check-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    /* How it works */
+    .how-it-works {
+      padding: 80px 0;
+      background: var(--light);
+    }
+    
+    .steps {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .step {
+      text-align: center;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    
+    .step:hover {
+      transform: translateY(-10px);
+    }
+    
+    .step-number {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      line-height: 50px;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 80px 0;
+    }
+    
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .testimonial-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 30px;
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    
+    .customer-info {
+      display: flex;
+      align-items: center;
+    }
+    
+    .customer-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      background: rgba(255,255,255,0.3);
+    }
+    
+    /* Pricing */
+    .pricing {
+      padding: 80px 0;
+      background: var(--light);
+    }
+    
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .price-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .price-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .popular {
+      position: relative;
+      border: 2px solid var(--primary);
+    }
+    
+    .popular::before {
+      content: "人気";
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--primary);
+      color: white;
+      padding: 5px 15px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .price-header {
+      padding: 30px;
+      background: var(--primary);
+      color: white;
+    }
+    
+    .popular .price-header {
+      background: var(--secondary);
+    }
+    
+    .price {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 15px 0;
+    }
+    
+    .price-features {
+      padding: 30px;
+    }
+    
+    .price-features ul {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+    
+    .price-features li {
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    /* FAQ */
+    .faq {
+      padding: 80px 0;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .faq-question {
+      padding: 20px;
+      background: white;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-question:after {
+      content: "+";
+      font-size: 18px;
+      color: var(--primary);
+    }
+    
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      background: white;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-answer-content {
+      padding: 0 0 20px;
+    }
+    
+    .active .faq-question:after {
+      content: "-";
+    }
+    
+    .active .faq-answer {
+      max-height: 1000px;
+    }
+    
+    /* CTA */
+    .cta {
+      padding: 100px 0;
+      text-align: center;
+      background: url('/api/placeholder/1200/600') center/cover;
+      background-color: rgba(0,0,0,0.8);
+      background-blend-mode: overlay;
+      color: white;
+    }
+    
+    .cta h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      font-size: 18px;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 50px 0;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    
+    .footer-column h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column a:hover {
+      color: white;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid #444;
+      color: #aaa;
+      font-size: 14px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .section-title h2 {
+        font-size: 28px;
+      }
+      
+      .target-container {
+        flex-direction: column;
+      }
+      
+      .target-content, .target-image {
+        width: 100%;
+      }
+    }
+    
+    /* Animation for FAQ */
+    .js-accordion-item .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .js-accordion-item.active .faq-answer {
+      max-height: 1000px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">GLAMSHOT<span>AI</span></div>
+        <div class="nav-links">
+          <a href="#features">特徴</a>
+          <a href="#for-new">新人キャスト向け</a>
+          <a href="#for-pro">ベテラン向け</a>
+          <a href="#pricing">料金プラン</a>
+          <a href="#contact">お問い合わせ</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>業界特化型AI宣材写真サービス<br>コスト削減と集客力アップを実現</h1>
+      <p>たった1枚の写真から、集客力抜群の宣材写真と動画を低コストで無限に生成。新人からベテランまで、すべてのキャストの魅力を最大限に引き出します。</p>
+      <a href="#pricing" class="btn btn-accent">今すぐ無料トライアル</a>
+    </div>
+  </section>
+  
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>なぜGLAMSHOT AIが選ばれるのか</h2>
+        <p>業界に特化した革新的なAI宣材写真・動画サービス</p>
+      </div>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-img">
+            <img src="/api/placeholder/400/200" alt="低コスト宣材写真" width="100%" height="100%">
+          </div>
+          <div class="feature-content">
+            <h3>圧倒的な低コスト</h3>
+            <p>従来のスタジオ撮影の最大90%オフ。1人あたり1回の撮影で数百種類の写真を生成可能。写真の追加や季節衣装への変更も追加料金なしでいつでも可能です。</p>
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-img">
+            <img src="aaaa.png" alt="豊富な衣装バリエーション" width="100%" height="100%">
+          </div>
+          <div class="feature-content">
+            <h3>豊富な衣装バリエーション</h3>
+            <p>制服、ナース、OL、学生、チャイナドレス、メイド、バニーガール、水着など500種類以上の衣装から選択可能。季節イベントごとのコスチュームも毎月追加されます。</p>
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-img">
+            <img src="/api/placeholder/400/200" alt="動画コンテンツ生成" width="100%" height="100%">
+          </div>
+          <div class="feature-content">
+            <h3>静止画から魅力的な動画へ</h3>
+            <p>AIによって静止画を自然な動きのある短い動画に変換。SNSでの拡散力を高め、お客様の注目を集めます。表情や仕草までリアルに再現します。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Benefits -->
+  <section class="benefits">
+    <div class="container">
+      <div class="section-title">
+        <h2>店舗様へのメリット</h2>
+        <p>GLAMSHOT AIが貴店にもたらす具体的なメリット</p>
+      </div>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <h3>撮影コスト大幅削減</h3>
+          <p>プロカメラマンを手配する必要がなく、衣装代やスタジオ代も不要。年間で数十万円のコスト削減が可能です。</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">⏱️</div>
+          <h3>時間効率の向上</h3>
+          <p>撮影の日程調整や長時間の撮影が不要。キャストの負担を減らしながら、豊富な写真素材を短時間で入手できます。</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <h3>常に新鮮なコンテンツ</h3>
+          <p>季節や流行に合わせて何度でも新しい宣材写真を生成。お客様を飽きさせない鮮度の高いコンテンツで集客力アップ。</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">📊</div>
+          <h3>成約率の向上</h3>
+          <p>実績データ分析によると、AI生成の多様な宣材写真と動画を導入した店舗様では、成約率が平均30%向上しています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- For New Cast -->
+  <section class="target-section" id="for-new">
+    <div class="container">
+      <div class="target-container">
+        <div class="target-content">
+          <h2>新人キャスト向けソリューション</h2>
+          <p>退職リスクを考慮した、リーズナブルで効果的な宣材写真・動画制作</p>
+          
+          <ul class="check-list">
+            <li><strong>ローコストプラン：</strong>初期費用を最小限に抑えた格安プランをご用意。未経験キャストの導入ハードルを下げます。</li>
+            <li><strong>スムーズな撮影：</strong>たった1枚の自撮り写真からプロ品質の宣材写真を生成。初めての撮影に対する不安や緊張を解消します。</li>
+            <li><strong>多様な衣装試着：</strong>実際に着る必要なく、様々な衣装での宣材写真が完成。キャストの負担を大幅に軽減します。</li>
+            <li><strong>即日デビュー：</strong>最短30分で宣材写真が完成。急なデビューにも対応可能です。</li>
+            <li><strong>コスパ最大化：</strong>短期在籍でも投資対効果を最大化できる料金体系。</li>
+          </ul>
+          
+          <a href="#pricing" class="btn">新人キャスト向けプランを見る</a>
+        </div>
+        
+        <div class="target-image">
+          <img src="/api/placeholder/500/400" alt="新人キャスト向けソリューション">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- For Pro Cast -->
+  <section class="target-section" id="for-pro">
+    <div class="container">
+      <div class="target-container">
+        <div class="target-image">
+          <img src="/api/placeholder/500/400" alt="ベテランキャスト向けソリューション">
+        </div>
+        
+        <div class="target-content">
+          <h2>ベテランキャスト向けソリューション</h2>
+          <p>常連客を飽きさせない、バリエーション豊かなコンテンツ制作</p>
+          
+          <ul class="check-list">
+            <li><strong>定期的なリニューアル：</strong>月替わりの衣装やテーマで常に新鮮なイメージを提供。常連のお客様にも新たな魅力をアピールできます。</li>
+            <li><strong>季節イベント対応：</strong>クリスマス、ハロウィン、浴衣、サンタなど、季節に合わせた特別な衣装での宣材写真を簡単に作成。</li>
+            <li><strong>動画コンテンツ：</strong>静止画を自然な動きのある短い動画に変換。SNSでの拡散力を高め、新規客の獲得につなげます。</li>
+            <li><strong>AI表情調整：</strong>様々な表情（微笑み、セクシー、クール等）のバリエーションを生成し、多面的な魅力をアピール。</li>
+            <li><strong>無制限の写真生成：</strong>プレミアムプランでは写真生成が無制限。常に新しいコンテンツで集客力を維持できます。</li>
+          </ul>
+          
+          <a href="#pricing" class="btn">ベテランキャスト向けプランを見る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- How it works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-title">
+        <h2>ご利用の流れ</h2>
+        <p>3つの簡単ステップで完了</p>
+      </div>
+      
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>写真をアップロード</h3>
+          <p>キャストの顔がはっきり写った写真を1枚アップロード。スマホで撮影した自撮り写真でも問題ありません。</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>衣装とスタイルを選択</h3>
+          <p>500種類以上の衣装、ポーズ、背景、照明から好みのスタイルを選択。または当社AIにおすすめを提案させることも可能です。</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>完成写真を受け取る</h3>
+          <p>最短30分で高品質な宣材写真が完成。気に入った写真を選んでダウンロードし、すぐに使用できます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>導入店舗様の声</h2>
+        <p>GLAMSHOT AIを導入した店舗様からの実際の体験談</p>
+      </div>
+      
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            「新人キャストの離職リスクを考えると、従来の撮影は大きな投資でした。GLAMSHOT AIなら低コストで高品質な写真が手に入り、退職があっても痛手が少ないです。おかげで新人採用のハードルが下がりました。」
+          </div>
+          <div class="customer-info">
+            <div class="customer-avatar"></div>
+            <div>
+              <h4>S.K様</h4>
+              <p>新宿エリア 店舗オーナー</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            「ベテランキャストのマンネリ化が課題でしたが、このサービスで毎月新しい衣装の写真を追加できるようになり、常連のお客様からの指名が増えました。特に動画機能は反響が大きく、SNSでの拡散効果も抜群です。」
+          </div>
+          <div class="customer-info">
+            <div class="customer-avatar"></div>
+            <div>
+              <h4>M.T様</h4>
+              <p>池袋エリア 店舗マネージャー</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            「撮影の日程調整が大変でしたが、このサービスを導入してからは時間と労力が大幅に削減できました。キャストの負担も減り、多忙な時期でも柔軟に新しい写真を追加できるのが大きなメリットです。年間で約50万円のコスト削減にも成功しました。」
+          </div>
+          <div class="customer-info">
+            <div class="customer-avatar"></div>
+            <div>
+              <h4>Y.H様</h4>
+              <p>大阪エリア 経営者</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-title">
+        <h2>料金プラン</h2>
+        <p>店舗規模やニーズに合わせた柔軟なプラン</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <div class="
